@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<body>
+
+
+
+
+
+
+
+
+	
+<h1> java Script改变html内容</h1>
+<div id="demo">
+Js 改变这里的内容
+</div>
+<script>
+function function_change_html_content () {
+	x = document.getElementById("demo");//查找元素
+	x.innerHTML="changed!!!"
+}
+</script>
+<button type="button" onclick="function_change_html_content()">改变html内容</button>
+
+
+
+
+<h1> java Script测试</h1>
+<button type="button" onclick="alert('Welcome!')">点击测试</button>
+
+
+
+
+
+	<p>
+		JavaScript 可以直接写入HTML输出流中：
+	</p>
+
+<script type="text/javascript">
+	document.write("<h1>This is a heading</h1>");
+	document.write("<p>这是一段</p>");
+</script>
+<p>
+只能在html输出流中使用<strong>document.write</strong>.
+如果在文档已加载后使用它（比如在函数中）。会覆盖整个文档.
+</p>
+</body>
+</html>
