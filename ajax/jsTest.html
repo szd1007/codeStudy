@@ -1,17 +1,86 @@
 <!DOCTYPE html>
+
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <body>
 
 
 
+	
+<button onclick="showDate()">看看星期几</button>
+<script >
+function showDate(){
+	var x;
+	var day = new Date().getDay();
+	switch(day){
+		case 0:
+			x = "Today is Sunday";
+			break;
+		case 3:
+			x = "Today is 星期三";
+			break;
+		default:
+			x="lucky day";
+	}
+
+	alert(x);
+}
+</script>
 
 
 
+<p> </p>
+
+
+
+
+
+<script>
+function showName(name,job){
+	alert("Welcome "+name +",the "+job);
+}
+</script>
+
+<button onclick="showName('szd1007','jdDog')">我是谁</button>
+
+
+
+
+
+
+
+<h1>改变 元素样式</h1>
+<script type="text/javascript">
+function change_color(){
+	x = document.getElementById("demo_color");
+	x.style.color="#ff0000";
+}
+</script>
+<div id="demo_color">
+改变颜色
+</div>
+<button type="button" onclick="change_color()">改变文字颜色</button>
+
+
+<h1>改变 图像</h1>
+<script type="text/javascript">
+function change_pic (){
+	x = document.getElementById("myimage");
+	if(x.src.match("logo-201305"))
+	{
+		x.src="http://s1.2mdn.net/viewad/4605991/47-468x60.gif";
+	}else{
+		x.src = "http://misc.360buyimg.com/lib/img/e/logo-201305.png";
+	}
+}
+</script>
+
+
+<img src="http://misc.360buyimg.com/lib/img/e/logo-201305.png" id="myimage" onclick="change_pic()">
 
 
 	
-<h1> java Script改变html内容</h1>
+<h1> 改变html内容</h1>
 <div id="demo">
 Js 改变这里的内容
 </div>
@@ -26,7 +95,7 @@ function function_change_html_content () {
 
 
 
-<h1> java Script测试</h1>
+<h1> 测试</h1>
 <button type="button" onclick="alert('Welcome!')">点击测试</button>
 
 
@@ -45,5 +114,11 @@ function function_change_html_content () {
 只能在html输出流中使用<strong>document.write</strong>.
 如果在文档已加载后使用它（比如在函数中）。会覆盖整个文档.
 </p>
+<button type="button" onclick="flush_html()">覆盖原始内容</button>
+<script type="text/javascript">
+function flush_html(){
+	document.write("覆盖原始文档内容");
+}
+</script>
 </body>
 </html>
