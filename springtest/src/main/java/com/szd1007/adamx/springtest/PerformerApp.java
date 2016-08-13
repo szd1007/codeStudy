@@ -12,9 +12,10 @@ public class PerformerApp {
     public static void main(String args[]){
         ApplicationContext ctx = new FileSystemXmlApplicationContext("classpath:performer.xml");
         Performer performer = (Performer) ctx.getBean("duke");
-        //performer.perform();
+        performer.perform();
 
         Performer saxPer = (Performer) ctx.getBean("kenny");
         saxPer.perform();
+        System.out.println("hello git world");
     }
 }
