@@ -21,5 +21,7 @@
     <property name="prefix" value="/WEB-INF/pages/"/>
     <property name="suffix" value=".jsp"/>
   </bean>
+  <bean id="spittleResposity" class="com.adamx.springmvc.data.impl.SpittleResposityImpl">
 
+  </bean>
 </beans>

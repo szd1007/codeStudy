@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import sun.org.mozilla.javascript.internal.ast.ReturnStatement;
 
 
 @Controller
@@ -40,7 +40,14 @@ public class SpittleController {
       @RequestParam(value="count", defaultValue="20") int count) {
     return spittleRepository.findSpittles(max, count);
   }
-
+    /** handle /spittles/show?spittle_id=  **/
+    @RequestMapping(value = "/show",method = RequestMethod.GET)
+    public String spittle(
+//        @RequestParam("spittle_id")long spittleId,Model model){
+        @RequestParam(value="spittle_id",defaultValue =MAX_LONG_AS_STRING)long spittleId,Model model){
+        model.addAttribute("spittle",spittleRepository.findOne(spittleId));
+        return "spittle";
+    }
 //  @RequestMapping(value="/{spittleId}", method=RequestMethod.GET)
 //  public String spittle(
 //      @PathVariable("spittleId") long spittleId,
