@@ -13,15 +13,22 @@
   <mvc:default-servlet-handler/>
   <!-- 开启注解 MVC-->
   <mvc:annotation-driven/>
-
-  <!--ViewResolver 视图解析器-->
+  <!--开启验证功能-->
+  <mvc:annotation-driven validator="myBeansValidator"/>
+    <!--ViewResolver 视图解析器-->
   <!--用于支持Servlet、JSP视图解析-->
   <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
     <property name="prefix" value="/WEB-INF/pages/"/>
     <property name="suffix" value=".jsp"/>
   </bean>
+
+  <bean id="myBeansValidator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+
   <bean id="spittleResposity" class="com.adamx.springmvc.data.impl.SpittleResposityImpl">
+
+  </bean>
+  <bean id="spitterResposity" class="com.adamx.springmvc.data.impl.SpitterResposityImpl">
 
   </bean>
 </beans>
