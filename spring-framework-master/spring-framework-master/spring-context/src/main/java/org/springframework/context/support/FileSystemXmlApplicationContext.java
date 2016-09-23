@@ -52,7 +52,7 @@ import org.springframework.core.io.Resource;
  * @see #getResourceByPath
  * @see GenericApplicationContext
  *
- * ¿´´úÂëÊ±¼ä 2016Äê9ÔÂ22ÈÕ21:13:47
+ * çœ‹ä»£ç æ—¶é—´ 2016å¹´9æœˆ22æ—¥21:13:47
  */
 public class FileSystemXmlApplicationContext extends AbstractXmlApplicationContext {
 
