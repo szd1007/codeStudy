@@ -52,7 +52,7 @@ import org.springframework.core.io.Resource;
  * @see #getResourceByPath
  * @see GenericApplicationContext
  *
- * 看代码时间 2016年9月22日21:13:47
+ *  看代码时间 2016年9月22日21:13:47
  */
 public class FileSystemXmlApplicationContext extends AbstractXmlApplicationContext {
 
