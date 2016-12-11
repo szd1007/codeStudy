@@ -56,7 +56,7 @@ public abstract class AbstractBeanDefinitionReader implements EnvironmentCapable
 	private ClassLoader beanClassLoader;
 
 	private Environment environment;
-
+    /****/
 	private BeanNameGenerator beanNameGenerator = new DefaultBeanNameGenerator();
 
 

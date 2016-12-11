@@ -268,7 +268,7 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 	public Resource[] getResources(String locationPattern) throws IOException {
 		Assert.notNull(locationPattern, "Location pattern must not be null");
 		if (locationPattern.startsWith(CLASSPATH_ALL_URL_PREFIX)) {
-			// a class path resource (multiple resources for same name possible)
+			// a class path resource (multiple resources for same name possible)获取所有的相同文件名的文件定义资源
 			if (getPathMatcher().isPattern(locationPattern.substring(CLASSPATH_ALL_URL_PREFIX.length()))) {
 				// a class path resource pattern
 				return findPathMatchingResources(locationPattern);
@@ -279,15 +279,15 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 			}
 		}
 		else {
-			// Only look for a pattern after a prefix here
+			// Only look for a pattern after a prefix here 只加载获取到的第一个资源
 			// (to not get fooled by a pattern symbol in a strange prefix).
 			int prefixEnd = locationPattern.indexOf(":") + 1;
 			if (getPathMatcher().isPattern(locationPattern.substring(prefixEnd))) {
-				// a file pattern
+				// a file pattern 是否满足AntPathMatcher 的path解析格式
 				return findPathMatchingResources(locationPattern);
 			}
 			else {
-				// a single resource with the given name
+				// a single resource with the given name   通过给定名称加载单个
 				return new Resource[] {getResourceLoader().getResource(locationPattern)};
 			}
 		}

@@ -178,13 +178,13 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	/** System time in milliseconds when this context started */
 	private long startupDate;
 
-	/** Flag that indicates whether this context is currently active */
+	/** Flag that indicates whether this context is currently active | bool标志位  用的是原子类型，并且引用是final  */
 	private final AtomicBoolean active = new AtomicBoolean();
 
 	/** Flag that indicates whether this context has been closed already */
 	private final AtomicBoolean closed = new AtomicBoolean();
 
-	/** Synchronization monitor for the "refresh" and "destroy" */
+	/** Synchronization monitor for the "refresh" and "destroy" 每个实例对应一个*/
 	private final Object startupShutdownMonitor = new Object();
 
 	/** Reference to the JVM shutdown hook, if registered */
@@ -202,7 +202,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	/** Helper class used in event publishing */
 	private ApplicationEventMulticaster applicationEventMulticaster;
 
-	/** Statically specified listeners */
+	/** Statically specified listeners 观察者模式 持有观察者的对象引用set */
 	private final Set<ApplicationListener<?>> applicationListeners = new LinkedHashSet<ApplicationListener<?>>();
 
 	/** ApplicationEvents published early */
@@ -393,7 +393,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		}
 	}
 
-	/**
+	/** 该对象是在refresh方法中进行初始化的
 	 * Return the internal ApplicationEventMulticaster used by the context.
 	 * @return the internal ApplicationEventMulticaster (never {@code null})
 	 * @throws IllegalStateException if the context has not been initialized yet
@@ -507,7 +507,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			// Prepare this context for refreshing.
 			prepareRefresh();
 
-			// Tell the subclass to refresh the internal bean factory.
+			// Tell the subclass to refresh the internal bean factory.    defaultListableBeanFactory
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 
 			// Prepare the bean factory for use in this context.
@@ -517,7 +517,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				// Allows post-processing of the bean factory in context subclasses.
 				postProcessBeanFactory(beanFactory);
 
-				// Invoke factory processors registered as beans in the context.
+				// Invoke factory processors registered as beans in the context. 后置处理器 初始化后做一些操作  加载用户实现的BeanFactoryPostProcessor 接口
 				invokeBeanFactoryPostProcessors(beanFactory);
 
 				// Register bean processors that intercept bean creation.
@@ -574,9 +574,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		this.startupDate = System.currentTimeMillis();
 		this.closed.set(false);
 		this.active.set(true);
-
+        //加上个这个判断为了减少日志输出的计算时间  省去日志传参数时额外产生的性能空间开销
 		if (logger.isInfoEnabled()) {
-			logger.info("Refreshing " + this);
+			logger.info("Refreshing " + this);//不管是不是info级别的  参数里都会进行调用
 		}
 
 		// Initialize any placeholder property sources in the context environment
@@ -635,7 +635,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		beanFactory.ignoreDependencyInterface(EnvironmentAware.class);
 
 		// BeanFactory interface not registered as resolvable type in a plain factory.
-		// MessageSource registered (and found for autowiring) as a bean.
+		// MessageSource registered (and found for autowiring) as a bean.相应接口实现对应的引用都指向了当前类以及类内部的对象（加入了对应的map中）
 		beanFactory.registerResolvableDependency(BeanFactory.class, beanFactory);
 		beanFactory.registerResolvableDependency(ResourceLoader.class, this);
 		beanFactory.registerResolvableDependency(ApplicationEventPublisher.class, this);
@@ -790,7 +790,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * Doesn't affect other listeners, which can be added without being beans.
 	 */
 	protected void registerListeners() {
-		// Register statically specified listeners first.
+		// Register statically specified listeners first.  把静态listener对象引用添加到listener help类
 		for (ApplicationListener<?> listener : getApplicationListeners()) {
 			getApplicationEventMulticaster().addApplicationListener(listener);
 		}
@@ -1046,7 +1046,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 
 	//---------------------------------------------------------------------
-	// Implementation of BeanFactory interface
+	// Implementation of BeanFactory interface  类似代理类（适配器模式）  内部持有具体接口实现的引用，具体实现代码不在这
 	//---------------------------------------------------------------------
 
 	@Override
@@ -1220,7 +1220,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 
 	//---------------------------------------------------------------------
-	// Implementation of MessageSource interface
+	// Implementation of MessageSource interface   多个接口都通过这个类进行调用，具体实现再去调用相应接口的实现类
 	//---------------------------------------------------------------------
 
 	@Override
