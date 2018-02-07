@@ -9,7 +9,7 @@
 
 <context:annotation-config />
   <bean id="duke" class="org.adamx.springtest.Juggler">
-    <constructor-arg value="15" />
+    <constructor-arg value="5" />
   </bean>
 
 </beans>
