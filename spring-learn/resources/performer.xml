@@ -8,8 +8,12 @@
      http://www.springframework.org/schema/context/spring-context.xsd">
 
 <context:annotation-config />
-  <bean id="duke" class="org.adamx.springtest.Juggler">
+  <bean id="duke" class="org.adamx.springtest.Juggler" scope="prototype">
     <constructor-arg value="5" />
-  </bean>
+</bean>
+  <context:component-scan base-package="org.adamx.springtest" />
+
+  <!-- 用$表达式方式 -->
+  <context:property-placeholder location="classpath:cat.properties"/>
 
 </beans>
