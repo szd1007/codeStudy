@@ -3,6 +3,9 @@ package org.adamx.springtest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
+/**
+ * @author szd1007
+ */
 public class ContextTest {
 
 	public static void main(String[] args) {
@@ -17,12 +20,10 @@ public class ContextTest {
 //		System.out.println(names[0]);
 //		System.out.println("isProtoType:" + ctx.isPrototype("duke"));
 //		System.out.println("isSingleton: " + ctx.isSingleton("duke"));
-        for (int i = 0; i < 3; i++) {
-            new Thread(() -> {
-                Park park = (Park) ctx.getBean("park");
-                park.whoIsThere();
-            }).start();
-        }
+        Park park = (Park) ctx.getBean("park");
+        Park park2 = (Park) ctx.getBean("park");
+        park.whoIsThere();
+        park2.whoIsThere();
 
     }
 }
