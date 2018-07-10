@@ -1,5 +1,7 @@
 package org.adamx.springtest;
 
+import org.adamx.springtest.aop.Juggler;
+import org.adamx.springtest.aop.Performance;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
@@ -19,11 +21,14 @@ public class ContextTest {
 //		System.out.println(names.length);
 //		System.out.println(names[0]);
 //		System.out.println("isProtoType:" + ctx.isPrototype("duke"));
-//		System.out.println("isSingleton: " + ctx.isSingleton("duke"));
-        Park park = (Park) ctx.getBean("park");
-        Park park2 = (Park) ctx.getBean("park");
-        park.whoIsThere();
-        park2.whoIsThere();
+//		System.out`.println("isSingleton: " + ctx.isSingleton("duke"));
+//        Park park = (Park) ctx.getBean("park");
+//        Park park2 = (Park) ctx.getBean("park");
+//        park.whoIsThere();
+//        park2.whoIsThere();
 
+        //aop>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        Performance juggler = (Performance) ctx.getBean("juggler");
+        juggler.perform();
     }
 }

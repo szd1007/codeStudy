@@ -1,6 +1,9 @@
-package org.adamx.springtest;
+package org.adamx.springtest.aop;
 
-public class Juggler implements Performer {
+import org.springframework.stereotype.Component;
+
+@Component
+public class Juggler implements Performance {
 	private int beanBags = 3;
 	public Juggler(){}
 
